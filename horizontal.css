@@ -1,0 +1,52 @@
+
+/* ----------------IMAGE SLIDER------------- */
+.Product1_outer {  
+	width:510px; 
+	margin:0 auto 10px;  
+	display:block; 
+	position:relative; 
+	padding:0px 10px 0px;
+}
+/* create custom forward-backward buttons for this container */
+.Product1_outer .SlideItMoo_forward,
+.Product1_outer .SlideItMoo_back{ 
+	display:block; 
+	position:absolute; 
+	cursor:pointer; 
+	width:25px; 
+	height:120px; 
+	bottom:35px; 
+	right:5px; 
+	background:url(images/slideitmoo_forward.png) no-repeat center;  
+}
+.Product1_outer .SlideItMoo_back { 
+	left:5px; 
+	background:url(images/slideitmoo_back.png) no-repeat center;  
+}
+
+/* the width is set to show the number of thumbnails that will be visible */
+.Product1_inner{ 
+	position:relative ; 
+	overflow:hidden ; 
+	width:474px ; /* set a display width to make the slider look good in case js is disabled */
+	margin:0px auto 0px;
+	padding:10px 0px 10px;
+}
+/* the thumbnails container; set a width on it so everything will be fine */
+.Product1_items { 
+	display:block; 
+	position:relative; 
+}
+/* single element design */
+.Product1_items div.product { 
+	display:block; 
+	position:relative; 
+	float:left; 
+	font-size:11px; 
+	width:120px; 
+	text-align:center; 
+	color:#FFFFFF;
+}
+.Product1_items a { padding:0px; margin:3px 0px 3px; clear:both; display:block; padding:2px; }
+.Product1_items a img{ border: solid 1px white; padding: 1px; }
+.Product1_items a:hover img{ border: solid 1px #ce4627; padding: 1px; }

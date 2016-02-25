@@ -1,0 +1,460 @@
+@charset "utf-8";
+html {overflow-y: scroll;}
+body {
+	font: 12px Verdana, Arial, Helvetica, sans-serif;
+	background: #000 url(images/bg.gif) repeat-x;
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+	color: #fff;
+}
+a:link {
+	color: #F60;
+}
+a:visited {
+	color: #F60;
+}
+a:hover {
+	text-decoration: none;
+}
+.main #hidden { display:none; }
+.main #container {
+	width: 900px;  /* using 20px less than a full 800px width allows for browser chrome and avoids a horizontal scroll bar */
+	background: url(images/main-bg.gif) repeat-x #2a0b02;
+	margin: 0 auto 15px auto; /* the auto margins (in conjunction with a width) center the page */
+	text-align: left; /* this overrides the text-align: center on the body element. */
+}
+.main #header {
+	height: 101px;
+	background: url(images/hdr-bg.jpg) repeat-x;
+	padding: 0;  /* this padding matches the left alignment of the elements in the divs that appear beneath it. If an image is used in the #header instead of text, you may want to remove the padding. */
+	margin: 0;
+}
+.main #header img {
+	margin: 0 30px 0 0;
+	padding: 0;
+	float: left;
+}
+.main #mainContent {
+	padding: 15px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+	margin: 0;
+	border-right: 1px solid #651e0a;
+	border-left: 1px solid #651e0a;
+	border-top: 0px solid black;
+	border-bottom: 1px solid #651e0a;
+}
+.main #sidebar {
+	float: right;
+	width: 260px;
+	padding: 0 10px 10px 10px;
+}
+.main #sidebar img { border: 3px solid white; }
+.main #sidebar p {
+	padding: 20px 0 5px 10px;
+	margin: 0;
+}
+.main #sidebar ul {
+	margin: 0;
+	padding: 0px 0 0 45px;
+}
+.main #sidebar ul li {
+	margin: 0;
+	padding: 10px 0 0 0;
+}
+#sidebar a:link{
+	color: #ecc8b4;
+}
+#sidebar a:visited{
+	color: #ecc8b4;
+}
+#sidebar a:hover{
+	color: #F60;
+}
+.main #show {
+	margin: 0 290px 0 0;
+	width: 560px;
+	height: 350px;
+	border: 3px solid white;
+	background: black;
+}
+.main #work {
+	margin: 10px 0 0 330px;
+	width: 450px;
+	border: 3px solid white;
+	background: black;
+}
+.main #footer {
+	padding: 0 10px; /* this padding matches the left alignment of the elements in the divs that appear above it. */
+	background:#CCC;
+}
+.main #footer p {
+	margin: 0; /* zeroing the margins of the first element in the footer will avoid the possibility of margin collapse - a space between divs */
+	padding: 10px 0; /* padding on this element will create space, just as the the margin would have, without the margin collapse issue */
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+.slideshow {
+	display: block;
+	position: relative;
+	z-index: 0;
+}
+.slideshow-images {
+	display: block;
+	overflow: hidden;
+	position: relative;
+}
+.slideshow-images img {
+	display: block;
+	position: absolute;
+	z-index: 1;
+}
+.slideshow-thumbnails { overflow: hidden; }
+/**
+HTML:
+	<div class="slideshow-images">
+		<img />
+		<img />
+	</div>
+	
+Notes:
+	The images div is where the slides are shown.
+	Customize the visible / prev / next classes to effect the slideshow transitions: fading, wiping, etc.
+*/
+
+.slideshow-images {
+	height: 350px;
+	width: 560px;
+}
+.slideshow-images-visible { opacity: 1; }
+.slideshow-images-prev { opacity: 0; }
+.slideshow-images-next { opacity: 0; }
+.slideshow-images img {
+	float: left;
+	left: 0;
+	top: 0;
+}
+/**
+Notes:
+	These are examples of user-defined styles.
+	Customize these classes to your usage of Slideshow.
+*/
+
+.slideshow {
+	height: 350px;
+	margin: 0 auto;
+	width: 560px;
+}
+.slideshow a img { border: 0; }
+/**
+HTML:
+	<div class="slideshow-captions">
+		...
+	</div>
+	
+Notes:
+	Customize the hidden / visible classes to affect the captions animation.
+*/
+
+.slideshow-captions {
+	background: #96290d;
+	bottom: 0;
+	color: #FFF;
+	font: normal 15px/22px Arial, sans-serif;
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	padding: 1%;
+	width: 98%;
+	z-index: 10000;
+}
+.slideshow-captions-hidden {
+	height: auto;
+	opacity: .1;
+}
+.slideshow-captions-visible {
+	height: auto;
+	opacity: .9;
+}
+/**
+HTML:
+	<div class="slideshow-controller">
+		<ul>
+			<li class="first"><a /></li>
+			<li class="prev"><a /></li>
+			<li class="pause play"><a /></li>
+			<li class="next"><a /></li>
+			<li class="last"><a /></li>
+		</ul>
+	</div>
+	
+Notes:
+	Customize the hidden / visible classes to affect the controller animation.
+*/
+
+.slideshow-controller {
+	background: url(images/controller.png) no-repeat;
+	height: 42px;
+	left: 50%;
+	margin: -21px 0 0 -119px;
+	overflow: hidden;
+	position: absolute;
+	top: 50%;
+	width: 238px;
+	z-index: 10000;
+}
+.slideshow-controller * {
+	margin: 0;
+	padding: 0;
+}
+.slideshow-controller-hidden { opacity: 0; }
+.slideshow-controller-visible { opacity: 1; }
+.slideshow-controller a {
+	cursor: pointer;
+	display: block;
+	height: 18px;
+	overflow: hidden;
+	position: absolute;
+	top: 12px;
+}
+.slideshow-controller a.active { background-position: 0 18px; }
+.slideshow-controller li { list-style: none; }
+.slideshow-controller li.first a {
+	background-image: url(images/controller-first.gif);
+	left: 33px;
+	width: 19px;
+}
+.slideshow-controller li.last a {
+	background-image: url(images/controller-last.gif);
+	left: 186px;
+	width: 19px;
+}
+.slideshow-controller li.next a {
+	background-image: url(images/controller-next.gif);
+	left: 145px;
+	width: 28px;
+}
+.slideshow-controller li.pause a {
+	background-image: url(images/controller-pause.gif);
+	left: 109px;
+	width: 20px;
+}
+.slideshow-controller li.play a { background-position: 20px 0; }
+.slideshow-controller li.play a.active { background-position: 20px 18px; }
+.slideshow-controller li.prev a {
+	background-image: url(images/controller-prev.gif);
+	left: 65px;
+	width: 28px;
+}
+/**
+HTML:
+	<div class="slideshow-loader" />
+	
+Notes:
+	Customize the hidden / visible classes to affect the loader animation.
+*/
+
+.slideshow-loader {
+	height: 28px;
+	right: 0;
+	position: absolute;
+	top: 0;
+	width: 28px;
+	z-index: 10001;
+}
+.slideshow-loader-hidden { opacity: 0; }
+.slideshow-loader-visible { opacity: 1; }
+/**
+HTML:
+	<div class="slideshow-thumbnails">
+		<ul>
+			<li><a class="slideshow-thumbnails-active" /></li>
+			<li><a class="slideshow-thumbnails-inactive" /></li>
+			...
+			<li><a class="slideshow-thumbnails-inactive" /></li>
+		</ul>
+	</div>
+	
+Notes:
+	Customize the active / inactive classes to affect the thumbnails animation.
+	Use the !important keyword to override FX without affecting performance.
+*/
+
+.slideshow-thumbnails {
+	bottom: -65px;
+	height: 65px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+}
+.slideshow-thumbnails * {
+	margin: 0;
+	padding: 0;
+}
+.slideshow-thumbnails ul {
+	height: 65px;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 10000px;
+}
+.slideshow-thumbnails li {
+	float: left;
+	list-style: none;
+	margin: 8px 8px 5px 0;
+	position: relative;
+}
+.slideshow-thumbnails a {
+	display: block;
+	float: left;
+	padding: 2px;
+	margin: 2px;
+	position: relative;
+}
+.slideshow-thumbnails a:hover {
+	background-color: #FFF !important;
+	opacity: 1 !important;
+}
+.slideshow-thumbnails img { display: block; }
+.slideshow-thumbnails-active {
+	background-color: #FFF;
+	opacity: 1;
+}
+.slideshow-thumbnails-inactive {
+	background-color: #a0a0a0;
+	opacity: .5;
+}
+#menu ul {
+	display: block;
+	padding: 0px;
+	margin: 0;
+	list-style: none;
+	text-align: center;
+}
+#menu ul li {
+	display: block;
+	float: left;
+	margin: 0px;
+	list-style: none;
+}
+#menu a {
+	float: left;
+	display: block;
+	height: 50px;
+	padding: 5px 6px 0px 6px;
+	margin: 60px 12px 0 0;
+	_margin: 60px 0 -15px 0;
+	border: 0px;
+	color:#ffcec1;
+	text-decoration: none;
+	font-size: 15px;
+}
+#menu a:hover {
+	color: white;
+	background: url(images/menu-bg.jpg) repeat-x;
+}
+#menu .current a {
+	background: url(images/menu-cur.jpg) repeat-x;
+	color: white;
+}
+#menu .current a:hover {
+	background: url(images/menu-bg.jpg) repeat-x;
+	color: white;
+}
+* {
+	margin:0;
+	padding:0;
+}
+#workmenu {
+	float:left;
+	width:230px;
+	line-height: 37px;
+	background:url(images/menu_1.gif) top no-repeat;
+}
+#workmenu p {
+	padding: 0 0 0 10px;
+	margin: 0;
+}
+#workbody {
+	background: url(images/menu_2.gif) repeat-y;
+	padding-left:10px;
+}
+#menubottom {
+	height:20px;
+	background:url(images/menu_4.gif) bottom no-repeat;
+}
+#joblist {
+	width:210px;
+	list-style:none;
+}
+#joblist li {
+	line-height: 27px;
+	height:27px;
+	background:url(images/menu_3.gif) bottom repeat-x;
+}
+#joblist a {
+	width:197px;
+	height:20px;
+	border-right:#9e3619 8px solid;
+	font:11px Verdana, Arial, sans-serif;
+	color:#ffc9ac;
+	text-decoration:none;
+	padding:5px 0 0 5px;
+	display:block !important;
+	display:block;
+}
+#joblist a:hover {
+	background:url(images/menu_5.gif) left repeat-y;
+	color: #fff;
+}
+#contact {
+	float:right;
+	display: inline;
+	width:320px;
+	background:url(images/contact_01.gif) top no-repeat;
+}
+#contactform {
+	margin: 19px 10px 0 10px;
+	padding: 0 15px 0 15px;
+	background:url(images/contact_02.gif) repeat-y;
+}
+#contactform h2 {
+	font-size: 18px;
+	text-align: center;
+	margin: 0;
+	padding: 0 0 10px 0;
+}
+table.contactform { font-size: 12px; }
+table.contactform td {
+	margin: 0;
+	padding: 0;
+}
+#contactform label {
+	margin: 0;
+	padding: 10px 0;
+}
+#contactform p {
+	margin: 0;
+	padding: 0 0 10px;
+}
+#contact-btm {
+	height:15px;
+	background:url(images/contact_03.gif) bottom no-repeat;
+}
+.button {
+	margin: 0 10px 0 5px;
+	padding: 1px;
+}
+.text {
+	margin-top: 5px;
+	width: 265px;
+}
+.textfield {
+	margin-top: 5px;
+	width: 265px;
+	height: 100px;
+}
+.star { color: #ff4040; }
